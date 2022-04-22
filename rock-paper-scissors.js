@@ -14,3 +14,21 @@ function computerPlay() {
             console.log("Somehow the computer chose something other than rock, paper, or scissors...");
     }
 }
+
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerSelection.toLowerCase();
+
+    if (playerSelection === computerSelection) {
+        return `It's a tie! You both played ${playerSelection}!`
+    }
+
+    if (playerSelection === 'rock' && computerSelection === 'paper' ||
+        playerSelection === 'scissors' && computerSelection === 'rock' ||
+        playerSelection === 'paper' && computerSelection === 'scissors'){
+        
+        return `You lose! ${computerSelection} beats ${playerSelection}!`;
+    } else {
+        return `You win! ${playerSelection} beats ${computerSelection}`;
+    }
+}
