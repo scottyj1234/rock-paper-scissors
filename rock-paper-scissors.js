@@ -15,6 +15,24 @@ function computerPlay() {
     }
 }
 
+function getPlayerPlay() {
+    let playerResponse = window.prompt("Please enter your move (rock, paper, or scissors");
+    playerResponse = playerResponse ? playerResponse.toLowerCase() : null;
+    const validResponses = ['rock', 'paper', 'scissors'];
+
+    while (!validResponses.includes(playerResponse)){
+        if (playerResponse){
+            playerResponse = window.prompt(`${playerResponse} is not a valid response. Please enter "rock", "paper, or "scissors".`);
+        } else {
+            playerResponse = window.prompt(`No, you have to play. Please enter "rock", "paper, or "scissors".`);
+        }
+
+        playerResponse = playerResponse.toLowerCase();
+    }
+
+    return playerResponse;
+}
+
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
@@ -30,5 +48,14 @@ function playRound(playerSelection, computerSelection) {
         return `You lose! ${computerSelection} beats ${playerSelection}!`;
     } else {
         return `You win! ${playerSelection} beats ${computerSelection}`;
+    }
+}
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; ++i){
+        playRound()
     }
 }
