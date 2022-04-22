@@ -16,7 +16,7 @@ function computerPlay() {
 }
 
 function getPlayerPlay() {
-    let playerResponse = window.prompt("Please enter your move (rock, paper, or scissors");
+    let playerResponse = window.prompt("Please enter your move (rock, paper, or scissors)");
     playerResponse = playerResponse ? playerResponse.toLowerCase() : null;
     const validResponses = ['rock', 'paper', 'scissors'];
 
@@ -56,6 +56,31 @@ function game() {
     let computerScore = 0;
 
     for (let i = 0; i < 5; ++i){
-        playRound()
+        console.log(`ROUND ${i+1}`);
+        let result = playRound(getPlayerPlay(), computerPlay());
+        switch (result.slice(0, 5)) {
+            case `You l`:
+                ++computerScore;
+                break;
+            case `It's `:
+                break;
+            case `You w`:
+                ++playerScore;
+                break;
+        }
+
+        console.log(result);
     }
+
+    if (playerScore > computerScore) {
+        console.log("Congratulations! You won!");
+    }
+    else if (playerScore < computerScore) {
+        console.log("Oh no! You lost!");
+    }
+    else {
+        console.log("You tied!");
+    }
+
+    console.log(`You: ${playerScore} wins. Computer: ${computerScore} wins.`);
 }
