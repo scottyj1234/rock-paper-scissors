@@ -9,6 +9,15 @@ function getComputerChoice() {
   }
 }
 
-for (let i = 0; i < 10; i++) {
-  console.log(getComputerChoice())
+function getHumanChoice() {
+  const validChoices = ["rock", "paper", "scissors"];
+  let playerChoice = prompt('What play would you like to make?\nEnter "rock", "paper", or "scissors"');
+
+  while (!validChoices.includes(playerChoice)) {
+    playerChoice = prompt('That was not a valid choice. Please enter a valid play\nEnter "rock", "paper", or "scissors"')
+  }
+
+  return playerChoice
 }
+
+console.log(getHumanChoice());
