@@ -1,6 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
 
+playGame();
 
 function getComputerChoice() {
   const randomChoiceInteger = Math.random() * 3
@@ -28,7 +29,7 @@ function playRound(humanChoice, computerChoice) {
   const lowerHumanChoice = humanChoice.toLowerCase()
   if (lowerHumanChoice === computerChoice) {
     console.log(`Draw! You both played ${humanChoice}`)
-    return;
+    return "draw";
   }
   
   switch (lowerHumanChoice) {
@@ -66,4 +67,25 @@ function playRound(humanChoice, computerChoice) {
       console.error(`Unexpected human choice: ${humanChoice}`)
       break;
   }
+
+  return "not draw";
+}
+
+function playGame(){
+  for (let i = 0; i < 5; ++i) {
+    console.log(`Round ${i + 1}\n`)
+    let humanChoice = getHumanChoice()
+    let computerChoice = getComputerChoice()
+    while (playRound(humanChoice, computerChoice) === "draw"){
+      humanChoice = getHumanChoice();
+      computerChoice = getComputerChoice();
+    }
+  }
+
+  if (humanScore > computerScore) {
+    console.log("Congratulations, you win!\n");
+  } else {
+    console.log("Sorry, you lose!\n");
+  }
+  console.log(`Final Score: You: ${humanScore}; Computer: ${computerScore}`);
 }
