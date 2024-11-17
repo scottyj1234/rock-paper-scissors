@@ -23,3 +23,47 @@ function getHumanChoice() {
 
   return playerChoice
 }
+
+function playRound(humanChoice, computerChoice) {
+  const lowerHumanChoice = humanChoice.toLowerCase()
+  if (lowerHumanChoice === computerChoice) {
+    console.log(`Draw! You both played ${humanChoice}`)
+    return;
+  }
+  
+  switch (lowerHumanChoice) {
+    case "rock":
+      if (computerChoice === "paper") {
+        console.log(`You lose! Paper covers ${humanChoice}`);
+        computerScore++;
+      } else {
+        console.log(`You win! ${humanChoice} breaks scissors!`);
+        humanScore++;
+      }
+      break;
+
+    case "paper":
+      if (computerChoice === "scissors") {
+        console.log(`You lose! Scissors cuts ${humanChoice}`);
+        computerScore++;
+      } else {
+        console.log(`You win! ${humanChoice} covers rock!`);
+        humanScore++;
+      }
+      break;
+  
+    case "scissors":
+    if (computerChoice === "rock") {
+      console.log(`You lose! Rock breaks ${humanChoice}`);
+      computerScore++;
+    } else {
+      console.log(`You win! ${humanChoice} cuts paper!`)
+      humanScore++;
+    }
+    break;
+
+    default:
+      console.error(`Unexpected human choice: ${humanChoice}`)
+      break;
+  }
+}
