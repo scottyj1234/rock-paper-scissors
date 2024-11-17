@@ -1,3 +1,7 @@
+let humanScore = 0;
+let computerScore = 0;
+
+
 function getComputerChoice() {
   const randomChoiceInteger = Math.random() * 3
   if(randomChoiceInteger < 1) {
@@ -19,5 +23,3 @@ function getHumanChoice() {
 
   return playerChoice
 }
-
-console.log(getHumanChoice());
