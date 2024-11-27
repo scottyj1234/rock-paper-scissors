@@ -1,7 +1,21 @@
 let humanScore = 0;
 let computerScore = 0;
 
-playGame();
+const rock_button_element = document.querySelector("#rock");
+const paper_button_element = document.querySelector("#paper");
+const scissors_button_element = document.querySelector("#scissors");
+
+rock_button_element.addEventListener("click", () => {
+  playRound("rock", getComputerChoice());
+});
+
+paper_button_element.addEventListener("click", () => {
+  playRound("paper", getComputerChoice());
+})
+
+scissors_button_elementgit.addEventListener("click", () => {
+  playRound("scissors", getComputerChoice());
+})
 
 function getComputerChoice() {
   const randomChoiceInteger = Math.random() * 3
@@ -26,13 +40,12 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  const lowerHumanChoice = humanChoice.toLowerCase()
-  if (lowerHumanChoice === computerChoice) {
+  if (humanChoice === computerChoice) {
     console.log(`Draw! You both played ${humanChoice}`)
     return "draw";
   }
   
-  switch (lowerHumanChoice) {
+  switch (humanChoice) {
     case "rock":
       if (computerChoice === "paper") {
         console.log(`You lose! Paper covers ${humanChoice}`);
