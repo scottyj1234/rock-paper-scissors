@@ -83,8 +83,14 @@ function playRound(humanChoice, computerChoice) {
   }
 
   document.querySelector("div.results").textContent = resultsString;
+  updateScores();
 
   return "not draw";
+}
+
+function updateScores() {
+  document.querySelector("#humanScore").textContent = `You: ${humanScore}`;
+  document.querySelector("#computerScore").textContent = `Computer: ${computerScore}`;
 }
 
 function playGame(){
