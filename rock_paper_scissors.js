@@ -40,6 +40,8 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+  if (isEndGame()) return;
+
   let resultsString = "";
   if (humanChoice === computerChoice) {
     document.querySelector("div.results").textContent = `Draw! You both played ${humanChoice}`
@@ -85,12 +87,25 @@ function playRound(humanChoice, computerChoice) {
   document.querySelector("div.results").textContent = resultsString;
   updateScores();
 
+  if (isEndGame()) {
+    const endGameMessageElement = document.querySelector("div.endGame");
+    if (humanScore > computerScore) {
+      endGameMessageElement.textContent = "Congratulations! You Win!";
+    } else {
+      endGameMessageElement.textContent = "You lose!";
+    }
+  }
+
   return "not draw";
 }
 
 function updateScores() {
   document.querySelector("#humanScore").textContent = `You: ${humanScore}`;
   document.querySelector("#computerScore").textContent = `Computer: ${computerScore}`;
+}
+
+function isEndGame() {
+  return humanScore >= 5 || computerScore >= 5;
 }
 
 function playGame(){
