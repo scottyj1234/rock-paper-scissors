@@ -13,7 +13,7 @@ paper_button_element.addEventListener("click", () => {
   playRound("paper", getComputerChoice());
 })
 
-scissors_button_elementgit.addEventListener("click", () => {
+scissors_button_element.addEventListener("click", () => {
   playRound("scissors", getComputerChoice());
 })
 
@@ -40,38 +40,39 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+  let resultsString = "";
   if (humanChoice === computerChoice) {
-    console.log(`Draw! You both played ${humanChoice}`)
+    document.querySelector("div.results").textContent = `Draw! You both played ${humanChoice}`
     return "draw";
   }
   
   switch (humanChoice) {
     case "rock":
       if (computerChoice === "paper") {
-        console.log(`You lose! Paper covers ${humanChoice}`);
+        resultsString = `You lose! Paper covers ${humanChoice}`;
         computerScore++;
       } else {
-        console.log(`You win! ${humanChoice} breaks scissors!`);
+        resultsString = `You win! ${humanChoice} breaks scissors!`;
         humanScore++;
       }
       break;
 
     case "paper":
       if (computerChoice === "scissors") {
-        console.log(`You lose! Scissors cuts ${humanChoice}`);
+        resultsString = `You lose! Scissors cuts ${humanChoice}`;
         computerScore++;
       } else {
-        console.log(`You win! ${humanChoice} covers rock!`);
+        resultsString = `You win! ${humanChoice} covers rock!`;
         humanScore++;
       }
       break;
   
     case "scissors":
     if (computerChoice === "rock") {
-      console.log(`You lose! Rock breaks ${humanChoice}`);
+      resultsString = `You lose! Rock breaks ${humanChoice}`;
       computerScore++;
     } else {
-      console.log(`You win! ${humanChoice} cuts paper!`)
+      resultsString = `You win! ${humanChoice} cuts paper!`;
       humanScore++;
     }
     break;
@@ -80,6 +81,8 @@ function playRound(humanChoice, computerChoice) {
       console.error(`Unexpected human choice: ${humanChoice}`)
       break;
   }
+
+  document.querySelector("div.results").textContent = resultsString;
 
   return "not draw";
 }
