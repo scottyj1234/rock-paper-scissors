@@ -28,24 +28,12 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  const validChoices = ["rock", "paper", "scissors"];
-  let playerChoice = prompt('What play would you like to make?\nEnter "rock", "paper", or "scissors"');
-
-  while (!validChoices.includes(playerChoice)) {
-    playerChoice = prompt('That was not a valid choice. Please enter a valid play\nEnter "rock", "paper", or "scissors"')
-  }
-
-  return playerChoice
-}
-
 function playRound(humanChoice, computerChoice) {
   if (isEndGame()) return;
 
   let resultsString = "";
   if (humanChoice === computerChoice) {
     document.querySelector("div.results").textContent = `Draw! You both played ${humanChoice}`
-    return "draw";
   }
   
   switch (humanChoice) {
@@ -95,8 +83,6 @@ function playRound(humanChoice, computerChoice) {
       endGameMessageElement.textContent = "You lose!";
     }
   }
-
-  return "not draw";
 }
 
 function updateScores() {
@@ -106,23 +92,4 @@ function updateScores() {
 
 function isEndGame() {
   return humanScore >= 5 || computerScore >= 5;
-}
-
-function playGame(){
-  for (let i = 0; i < 5; ++i) {
-    console.log(`Round ${i + 1}\n`)
-    let humanChoice = getHumanChoice()
-    let computerChoice = getComputerChoice()
-    while (playRound(humanChoice, computerChoice) === "draw"){
-      humanChoice = getHumanChoice();
-      computerChoice = getComputerChoice();
-    }
-  }
-
-  if (humanScore > computerScore) {
-    console.log("Congratulations, you win!\n");
-  } else {
-    console.log("Sorry, you lose!\n");
-  }
-  console.log(`Final Score: You: ${humanScore}; Computer: ${computerScore}`);
 }
